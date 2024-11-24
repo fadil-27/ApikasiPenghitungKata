@@ -4,10 +4,11 @@
  */
 package com.mycompany.aplikasipenghitungkata;
 
-/**
- *
- * @author LENOVO
- */
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
 public class FramePenghitungKata extends javax.swing.JFrame {
 
     /**
@@ -61,12 +62,23 @@ public class FramePenghitungKata extends javax.swing.JFrame {
 
         jLabel1.setText("Kata yang dicari ");
 
+        jButton1.setBackground(new java.awt.Color(118, 69, 59));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cari Kata");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Hasil Pencarian :");
 
+        jButton2.setBackground(new java.awt.Color(118, 69, 59));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Hitung");
 
+        jButton3.setBackground(new java.awt.Color(118, 69, 59));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Simpan");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -201,6 +213,30 @@ public class FramePenghitungKata extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String searchText = jTextField1.getText().toLowerCase();
+        String content = jTextArea1.getText().toLowerCase();
+        
+        if (searchText.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Masukkan kata yang ingin dicari!");
+            return;
+        }
+        
+        // Jumlah occurrences
+        int lastIndex = 0;
+        int count = 0;
+        
+        while (lastIndex != -1) {
+            lastIndex = content.indexOf(searchText, lastIndex);
+            if (lastIndex != -1) {
+                count++;
+                lastIndex += searchText.length();
+            }
+        }
+        
+        jLabel2.setText("Hasil Pencarian: " + count);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
