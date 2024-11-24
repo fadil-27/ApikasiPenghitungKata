@@ -86,6 +86,11 @@ public class FramePenghitungKata extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(118, 69, 59));
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Hitung");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setBackground(new java.awt.Color(118, 69, 59));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
@@ -251,6 +256,28 @@ public class FramePenghitungKata extends javax.swing.JFrame {
         // Reset field pencarian
         jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String text = jTextArea1.getText();
+        
+        // Jumlah Kata
+        String[] words = text.trim().split("\\s+");
+        int wordCount = text.trim().isEmpty() ? 0 : words.length;
+        jLabel4.setText("Jumlah Kata: " + wordCount);
+
+        // Jumlah Karakter
+        int charCount = text.length();
+        jLabel3.setText("Jumlah Karakter: " + charCount);
+
+        // Jumlah Kalimat
+        String[] sentences = text.split("[.!?]+");
+        int sentenceCount = text.trim().isEmpty() ? 0 : sentences.length;
+        jLabel5.setText("Jumlah Kalimat: " + sentenceCount);
+
+        // Jumlah Paragraf
+        int paragraphCount = countParagraphs(text);
+        jLabel6.setText("Jumlah Paragraf: " + paragraphCount);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
