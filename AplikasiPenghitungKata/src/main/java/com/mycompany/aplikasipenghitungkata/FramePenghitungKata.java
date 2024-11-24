@@ -96,6 +96,11 @@ public class FramePenghitungKata extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(118, 69, 59));
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Simpan");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -311,6 +316,34 @@ public class FramePenghitungKata extends javax.swing.JFrame {
         jTextField1.setText("");
         jLabel2.setText("Hasil Pencarian: ");
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         // Buka FileChooser untuk memilih lokasi file
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Simpan File");
+
+        // Pilih hanya file teks
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("File Teks (*.txt)", "txt"));
+
+        // Tampilkan dialog simpan
+        int userSelection = fileChooser.showSaveDialog(this);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+
+            // Tambahkan ekstensi .txt jika tidak ada
+            if (!fileToSave.getName().endsWith(".txt")) {
+                fileToSave = new File(fileToSave.getAbsolutePath() + ".txt");
+            }
+
+            // Tulis isi JTextArea ke file
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileToSave))) {
+                writer.write(jTextArea1.getText());
+                JOptionPane.showMessageDialog(this, "File berhasil disimpan: " + fileToSave.getAbsolutePath());
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menyimpan file: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
