@@ -11,9 +11,19 @@ import javax.swing.event.*;
 
 public class FramePenghitungKata extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FramePenghitungKata
-     */
+    private int countParagraphs(String text) {
+        String[] paragraphs = text.split("\\n+"); // Pisahkan berdasarkan baris baru
+        int count = 0;
+
+        for (String paragraph : paragraphs) {
+            if (!paragraph.trim().isEmpty()) {
+                count++; // Hitung paragraf yang tidak kosong
+            }
+        }
+
+        return count;
+    }
+
     public FramePenghitungKata() {
         initComponents();
     }
