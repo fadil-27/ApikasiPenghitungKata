@@ -217,16 +217,16 @@ public class FramePenghitungKata extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String searchText = jTextField1.getText().toLowerCase();
         String content = jTextArea1.getText().toLowerCase();
-        
+
         if (searchText.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Masukkan kata yang ingin dicari!");
+            JOptionPane.showMessageDialog(this, "Masukkan kata yang dicari!");
             return;
         }
-        
+
         // Jumlah occurrences
         int lastIndex = 0;
         int count = 0;
-        
+
         while (lastIndex != -1) {
             lastIndex = content.indexOf(searchText, lastIndex);
             if (lastIndex != -1) {
@@ -234,8 +234,12 @@ public class FramePenghitungKata extends javax.swing.JFrame {
                 lastIndex += searchText.length();
             }
         }
-        
+
+        // Set hasil pencarian ke label
         jLabel2.setText("Hasil Pencarian: " + count);
+
+        // Reset field pencarian
+        jTextField1.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
